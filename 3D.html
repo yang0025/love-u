@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D旋转的魔方</title>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+    <style>
+        body {
+            /* 外边距 */
+            margin: 0;
+            /* 设置背景图片 */
+            background-image: url(img/bg1.jpg);
+            /* 设置背景图片是否重复,默认沿着x轴,Y轴重复显示 */
+            background-repeat: no-repeat;
+            /* background-size: contain; */
+            /* background-size: cover; */
+            height: 100vh;
+            /* 先设置高度,因为标签五高度,如果不设置高度,第二个高度默认和body的高度一样为0,因此需要设置body的高度 */
+            background-size: 100% 100%;
+
+            /* 开启弹性布局,可以处理内部子元素的对其方式 */
+            display: flex;
+            /* 水平方向对其方式 */
+            justify-content: center;
+            /* 垂直方向对其方式 */
+            align-items: center;
+            /* 设置视角与3d元素之间的距离 */
+            perspective: 1000px;
+            /* 控制视角的位置  默认是50% 50% */
+            /* perspective-origin: 50% 80%; */
+        }
+
+        main {
+            width: 200px;
+            height: 200px;
+            /* background-color: rgba(223, 206, 57, 0.5); */
+            /* margin: 0 auto; */
+            /* 保留内部子元素的3D转换效果 */
+            transform-style: preserve-3d;
+            /* 动画名称 */
+            animation-name: rotate;
+            /* 一次动画执行的时间 */
+            animation-duration: 6s;
+            /* 动画执行的次数  infinite一直执行 */
+            animation-iteration-count: infinite;
+            /* 动画执行的速率,由慢到快在到慢 */
+            animation-timing-function: ease-in-out;
+            position: relative;
+
+
+
+            /* animation-timing-function: initial; */
+            /* animation-duration: initial; */
+        }
+
+        #name {
+            color: white;
+            text-align: center;
+           
+            
+      }
+      .name i{
+          color: red;
+      }
+      #text{
+        color: white;
+            text-align: center;
+      }
+        
+
+
+
+        @keyframes rotate {
+            0% {
+                transform: rotateX(0) rotateY(0);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+
+        }
+
+        main>div {
+            width: 100%;
+            height: 100%;
+            /* 设置绝对定位,处理标签的层级关系 */
+            position: absolute;
+            /* border-radius: 50%; */
+        }
+
+        main:hover .back {
+            transform: translateZ(300px)
+        }
+
+        main:hover .front {
+            transform: rotateY(180deg) translateZ(300px);
+        }
+
+        main:hover .top {
+            transform: rotateX(90deg) translateZ(300px);
+        }
+
+        main:hover .bottom {
+            transform: rotateX(90deg) translateZ(-300px);
+        }
+
+        main:hover .left {
+            transform: rotateY(-90deg) translateZ(300px);
+        }
+
+
+        main:hover .right {
+            transform: rotateY(90deg) translateZ(300px);
+        }
+
+
+
+
+        .front {
+            background-color: rgba(190, 190, 190, 0.3);
+            /* 3d图形转化:z轴平移 */
+            transform: rotateY(180deg) translateZ(100px);
+
+        }
+
+        .back {
+            background-color: rgba(190, 190, 190, 0.3);
+            /* 3d图形转化:z轴平移 */
+            transform: translateZ(100px);
+        }
+
+        .top {
+            background-color: rgba(190, 190, 190, 0.3);
+            /* 图形转换有四种:旋转(rotate) 平移(translate) 倾斜(skew) 缩放(scale) */
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .bottom {
+            background-color: rgba(190, 190, 190, 0.3);
+            transform: rotateX(90deg) translateZ(-100px);
+
+        }
+
+        .left {
+            background-color: rgba(190, 190, 190, 0.3);
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .right {
+            background-color: rgba(190, 190, 190, 0.3);
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        /* ==================第二个小方块=============== */
+
+        main section {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            /* background-color: rgba(43, 40, 185, 0.5); */
+            position: absolute;
+            left: calc(50% - 50px);
+            top: calc(50% - 50px);
+            animation-name: rotate;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            position: relative;
+            transform-style: preserve-3d;
+
+
+        }
+
+        main section>div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+        }
+
+        section .front1 {
+            background-color: rgba(141, 73, 161, 0.5);
+            transform: rotateY(180deg) translateZ(50px);
+
+        }
+
+        .back1 {
+            background-color: rgba(141, 73, 161, 0.5);
+            transform: translateZ(50px);
+        }
+
+        .top1 {
+            background-color: rgba(141, 73, 161, 0.5);
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        .bottom1 {
+            background-color: rgba(141, 73, 161, 0.5);
+            transform: rotateX(90deg) translateZ(-50px);
+
+        }
+
+        .left1 {
+            background-color: rgba(141, 73, 161, 0.5);
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+
+        .right1 {
+            background-color: rgba(141, 73, 161, 0.5);
+            transform: rotateY(90deg) translateZ(50px);
+        }
+
+
+        /* main:hover .back1 {
+            transform: translateZ(300px)
+        }
+
+        main:hover .front1 {
+            transform: rotateY(180deg) translateZ(300px);
+        }
+
+        main:hover .top1 {
+            transform: rotateX(90deg) translateZ(300px);
+        }
+
+        main:hover .bottom1 {
+            transform: rotateX(90deg) translateZ(-300px);
+        }
+
+        main:hover .left1 {
+            transform: rotateY(-90deg) translateZ(300px);
+        }
+
+
+        main:hover .right1 {
+            transform: rotateY(90deg) translateZ(300px);
+        } */
+
+        /* =============第三个小方块=========== */
+
+        /* main section .class {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: calc(50% - 50px);
+            top: calc(50% - 50px);
+            animation-name: rotate;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            position: relative;
+            transform-style: preserve-3d;
+
+
+        }
+
+        main section .three>div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+        }
+
+        .front2 {
+            background-color: rgba(190, 190, 190, 0.3);
+            transform: rotateY(180deg) translateZ(50px);
+
+        }
+
+        .back2 {
+            background-color: rgba(190, 190, 190, 0.3);
+            transform: translateZ(50px);
+        }
+
+        .top2 {
+            background-color: rgba(190, 190, 190, 0.3);
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        .bottom2 {
+            background-color: rgba(190, 190, 190, 0.3);
+            transform: rotateX(90deg) translateZ(-50px);
+
+        }
+
+        .left2 {
+            background-color: rgba(190, 190, 190, 0.3);
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+
+        .right2 {
+            background-color: rgba(190, 190, 190, 0.3);
+            transform: rotateY(90deg) translateZ(50px);
+        } */
+    </style>
+</head>
+
+<body>
+
+
+
+    <!-- main是立方体的容器标签,容器面所在的位置是每个面的初始位置 -->
+    <main>
+        <div class="front"></div>
+        <div class="back"></div>
+        <div class="top"></div>
+        <div class="bottom"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+
+        <section>
+            <div class="front1" id="name">王辰光<i class="fa fa-heartbeat"></i><br>日月星辰<br>唯独爱你<br>love u</div>
+            <div class="back1" id="text"></div>
+            <div class="top1"></div>
+            <div class="bottom1"></div>
+            <div class="left1"></div>
+            <div class="right1"></div>
+
+
+            <section class="three">
+                <div class="front2"></div>
+                <div class="back2"></div>
+                <div class="top2"></div>
+                <div class="bottom2"></div>
+                <div class="left2"></div>
+                <div class="right2"></div>
+
+            </section>
+        </section>
+
+  <audio src="music.mp3" autoplay></audio>
+
+
+    </main>
+
+    
+
+
+</body>
+
+</html>
